@@ -1,5 +1,8 @@
 <?php
 
+$_ENV['VERCEL'] = '1';
+$_SERVER['VERCEL'] = '1';
+
 // Ensure serverless writable storage directories exist in /tmp
 $directories = [
     '/tmp/storage/framework/views',
