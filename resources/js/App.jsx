@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer.jsx';
 import FloatingContact from './components/FloatingContact.jsx';
 import Header from './components/Header.jsx';
+import { InitialPreloader, RouteLoader } from './components/Preloader.jsx';
 import { FloatingScrollToTop, ScrollToTopOnRouteChange } from './components/ScrollToTop.jsx';
 
 const Home = lazy(() => import('./pages/Home.jsx'));
@@ -20,25 +21,25 @@ const PaidConsulting = lazy(() => import('./pages/PaidConsulting.jsx'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin.jsx'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
-
-function PageLoader() {
-    return (
-        <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-            <p className="text-sm font-semibold text-emerald-700">Loading...</p>
-        </div>
-    );
-}
+const PFServices = lazy(() => import('./pages/PFServices.jsx'));
+const ESIServices = lazy(() => import('./pages/ESIServices.jsx'));
+const MonthlyFiling = lazy(() => import('./pages/MonthlyFiling.jsx'));
 
 export default function App() {
     return (
         <BrowserRouter>
+            <InitialPreloader />
             <main className="min-h-screen bg-slate-50 text-slate-950">
                 <ScrollToTopOnRouteChange />
                 <Header />
-                <Suspense fallback={<PageLoader />}>
+                <Suspense fallback={<RouteLoader />}>
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        {/* Main Services Page */}
                         <Route path="/services" element={<Services />} />
+                        <Route path="/services/pf-services" element={<PFServices />} />
+                        <Route path="/services/esi-services" element={<ESIServices />} />
+                        <Route path="/services/monthly-filing" element={<MonthlyFiling />} />
                         <Route path="/pricing" element={<Pricing />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/about-us" element={<AboutUs />} />

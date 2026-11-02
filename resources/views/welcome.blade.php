@@ -5,12 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'PFEsi') }}</title>
+        <title>{{ config('app.name', 'CCS - PF & ESIC Advisory Services') }}</title>
+        <meta name="description" content="India's Trusted PF & ESIC Advisory and Compliance Consultants. Fast EPF withdrawal, ESIC registration, monthly filing, and KYC corrections.">
+
+        <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
         @viteReactRefresh
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
+        <div id="initial-preloader" style="position:fixed;inset:0;z-index:99998;background:#ffffff;transition:opacity 0.3s ease;"></div>
         <div id="app"></div>
     </body>
 </html>

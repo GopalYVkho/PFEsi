@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PaymentMethodsRow from '../components/PaymentLogos.jsx';
 import { apiFetch } from '../lib/http.js';
 
 const featureCards = [
@@ -250,6 +251,12 @@ function PaymentPlaceholder({ booking, onPrevious }) {
                     <p className="text-3xl font-black">₹{booking.amount}</p>
                 </div>
                 <p className="mt-3 text-sm text-slate-500">Status: {booking.payment_status}</p>
+            </div>
+            <div className="mt-6 border-t border-slate-100 pt-4 text-center">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Supported Payment Options
+                </p>
+                <PaymentMethodsRow />
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-between">
                 <button type="button" onClick={onPrevious} className="rounded-lg border border-slate-300 px-6 py-3 text-sm font-black">Previous</button>

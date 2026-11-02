@@ -1,129 +1,190 @@
 import { Link } from 'react-router-dom';
+import PaymentMethodsRow from '../components/PaymentLogos.jsx';
 
 const plans = [
     {
-        badge: 'Best Value',
+        badge: 'Starter',
         price: '₹349',
-        title: 'Talk to Us on Call',
-        tone: 'bg-[#f4f4f5] text-slate-950',
-        button: 'bg-[#087f86] hover:bg-[#066a70] text-white',
+        duration: 'Single Query Session',
+        title: 'Quick Call Consultation',
+        desc: 'Ideal for quick doubts regarding PF balance, rejection reasons, or eligibility questions.',
         features: [
-            'Basic talk with our consultant',
+            '1-on-1 direct phone consultation',
             'PF withdrawal eligibility check',
-            'Answers to basic EPFO / ESIC queries',
-            'Connect within 60 minutes',
-            'Essential Functions',
+            'EPFO rejection notice evaluation',
+            'Connect within 45-60 minutes',
+            'Step-by-step guidance notes',
         ],
+        cta: 'Book ₹349 Call',
+        popular: false,
     },
     {
-        badge: 'Popular',
+        badge: 'Most Popular',
         price: '₹649',
-        title: 'Discuss Your Query on Call',
-        tone: 'bg-gradient-to-br from-[#087f86] to-[#2bb7c4] text-white',
-        button: 'bg-[#05717a] hover:bg-[#055f66] text-white',
+        duration: 'Comprehensive Case Review',
+        title: 'Detailed Consultation & Strategy',
+        desc: 'Complete analysis of your PF / ESIC case with personalized action plan and direct advisor support.',
         features: [
-            'Detailed discussion on your queries',
-            'Priority consultation support',
-            'Unlimited access',
-            'Connect within 30 minutes',
-            'Essential Functions',
+            'Deep dive discussion on complex issues',
+            'Priority callback within 20-30 mins',
+            'Joint declaration & correction roadmap',
+            'PF transfer & multiple member ID fix',
+            'Follow-up support on the same query',
         ],
+        cta: 'Book Priority ₹649',
+        popular: true,
     },
     {
-        badge: 'Flexible',
+        badge: 'Screen Share',
         price: '₹899',
-        title: 'Sharing Online PC/Laptop Screen',
-        tone: 'bg-[#f4f4f5] text-slate-950',
-        button: 'bg-[#087f86] hover:bg-[#066a70] text-white',
+        duration: 'Live Remote Assistance',
+        title: 'Live PC Screen Sharing + Call',
+        desc: 'Solve stubborn portal errors live while an expert navigates the EPFO Unified Portal with you.',
         features: [
-            'Live PC/Laptop screen sharing + Call',
-            'PF withdrawal / EPF claim details check',
-            'Help with EPFO portal errors',
+            'Live Google Meet / AnyDesk screen share',
+            'Live claim filing & portal error troubleshooting',
+            'DSC / Digital signature error fix',
             'Connect within 30 minutes',
-            'Essential Functions',
+            'Live verification before final submit',
         ],
+        cta: 'Book Live Screen ₹899',
+        popular: false,
     },
 ];
 
-function PlanCard({ plan, featured = false }) {
-    return (
-        <article className={`rounded-xl p-8 shadow-sm ${plan.tone}`}>
-            <span className={`inline-flex rounded-md px-3 py-1 text-xs font-black ${featured ? 'bg-white text-[#087f86]' : 'bg-cyan-100 text-[#087f86]'}`}>
-                {plan.badge}
-            </span>
-
-            <h2 className="mt-6 text-5xl font-black">{plan.price}</h2>
-            <p className={`mt-3 text-sm font-black ${featured ? 'text-white/90' : 'text-slate-700'}`}>
-                {plan.title}
-            </p>
-
-            <div className="mt-10 space-y-5">
-                {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-3 text-sm font-black">
-                        <span className={`grid size-5 place-items-center rounded-full text-xs ${featured ? 'bg-white/15 text-white' : 'bg-[#087f86] text-white'}`}>
-                            ✓
-                        </span>
-                        {feature}
-                    </div>
-                ))}
-            </div>
-
-            <Link
-                to="/paid-consulting"
-                className={`mt-10 flex h-12 items-center justify-center rounded-lg text-sm font-black transition ${plan.button}`}
-            >
-                Book Consultation <span className="ml-2">+</span>
-            </Link>
-        </article>
-    );
-}
-
 export default function Pricing() {
     return (
-        <section className="bg-white px-4 py-20 text-slate-950 sm:px-6 lg:px-8">
+        <section className="relative isolate bg-gradient-to-b from-white via-slate-50 to-white px-4 py-24 text-slate-900 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
-                <div className="text-center">
-                    <span className="inline-flex rounded-full bg-slate-200 px-4 py-2 text-xs font-black">
-                        Flexible Pricing
+                {/* Header */}
+                <div className="text-center max-w-3xl mx-auto">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-teal-50 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-teal-800 border border-teal-100">
+                        <span className="size-1.5 rounded-full bg-teal-600" />
+                        Transparent & Affordable
                     </span>
-                    <h1 className="mt-8 text-4xl font-black tracking-tight sm:text-5xl">
-                        Book Your Online PF Consultant
-                    </h1>
-                    <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-600">
-                        Get instant consultation to experienced Chakraborty Consultancy Services LLP - ESIC & PF consultant in India. Whether you need help with PF withdrawal claims, EPFO/ESIC registration, monthly compliance.
+                    <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-slate-900">
+                        Book Your Online PF & ESIC Expert
+                    </h2>
+                    <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
+                        No hidden surprises. Choose the consultation tier that fits your situation and speak with an authorized labour law expert today.
                     </p>
                 </div>
 
-                <div className="mx-auto mt-16 grid max-w-6xl gap-6 lg:grid-cols-3">
-                    {plans.map((plan, index) => (
-                        <PlanCard key={plan.price} plan={plan} featured={index === 1} />
+                {/* Cards Grid */}
+                <div className="mx-auto mt-16 grid max-w-6xl gap-8 lg:grid-cols-3 lg:items-center">
+                    {plans.map((plan) => (
+                        <div
+                            key={plan.price}
+                            className={[
+                                'relative flex flex-col justify-between rounded-3xl p-8 transition-all duration-300',
+                                plan.popular
+                                    ? 'bg-gradient-to-br from-teal-900 via-teal-800 to-cyan-900 text-white shadow-2xl shadow-teal-900/25 ring-2 ring-teal-500 lg:-translate-y-2 lg:p-9'
+                                    : 'bg-white text-slate-900 border border-slate-200/90 shadow-sm hover:border-teal-200 hover:shadow-xl',
+                            ].join(' ')}
+                        >
+                            {plan.popular && (
+                                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 px-4 py-1 text-xs font-extrabold uppercase tracking-wider text-slate-950 shadow-md">
+                                    Recommended Choice
+                                </div>
+                            )}
+
+                            <div>
+                                <div className="flex items-center justify-between">
+                                    <span
+                                        className={[
+                                            'rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider',
+                                            plan.popular
+                                                ? 'bg-white/15 text-teal-200 border border-white/20'
+                                                : 'bg-teal-50 text-teal-800 border border-teal-100',
+                                        ].join(' ')}
+                                    >
+                                        {plan.badge}
+                                    </span>
+                                    <span
+                                        className={[
+                                            'text-xs font-medium',
+                                            plan.popular ? 'text-teal-200' : 'text-slate-500',
+                                        ].join(' ')}
+                                    >
+                                        {plan.duration}
+                                    </span>
+                                </div>
+
+                                <div className="mt-6 flex items-baseline gap-1">
+                                    <span className="text-4xl sm:text-5xl font-black tracking-tight">{plan.price}</span>
+                                    <span className={`text-xs font-semibold ${plan.popular ? 'text-teal-200' : 'text-slate-500'}`}>
+                                        / session
+                                    </span>
+                                </div>
+
+                                <h3 className="mt-3 text-lg font-bold tracking-tight">{plan.title}</h3>
+                                <p className={`mt-2 text-xs sm:text-sm leading-relaxed ${plan.popular ? 'text-teal-100' : 'text-slate-600'}`}>
+                                    {plan.desc}
+                                </p>
+
+                                {/* Features Checklist */}
+                                <div className="mt-8 space-y-3.5 border-t border-slate-200/20 pt-6">
+                                    {plan.features.map((feat) => (
+                                        <div key={feat} className="flex items-start gap-2.5 text-xs sm:text-sm">
+                                            <span
+                                                className={[
+                                                    'grid size-4 shrink-0 place-items-center rounded-full text-[10px] font-black mt-0.5',
+                                                    plan.popular
+                                                        ? 'bg-teal-400 text-teal-950'
+                                                        : 'bg-teal-100 text-teal-800',
+                                                ].join(' ')}
+                                            >
+                                                ✓
+                                            </span>
+                                            <span className={plan.popular ? 'text-teal-50' : 'text-slate-700 font-medium'}>
+                                                {feat}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* CTA Button */}
+                            <div className="mt-9">
+                                <Link
+                                    to="/paid-consulting"
+                                    className={[
+                                        'flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-center text-sm font-bold transition-all duration-200',
+                                        plan.popular
+                                            ? 'bg-white text-teal-900 shadow-lg hover:bg-teal-50'
+                                            : 'bg-teal-800 text-white hover:bg-teal-700 shadow-md shadow-teal-900/10',
+                                    ].join(' ')}
+                                >
+                                    <span>{plan.cta}</span>
+                                    <span>→</span>
+                                </Link>
+                            </div>
+                        </div>
                     ))}
                 </div>
 
-                <div className="mt-16 text-center">
-                    <div className="flex flex-wrap items-center justify-center gap-8 text-sm font-black">
-                        <span className="inline-flex items-center gap-2">
-                            <span className="grid size-7 place-items-center rounded-full bg-[#087f86] text-white">✓</span>
-                            Secure
+                {/* Secure Trust & Payment Guarantee Bar */}
+                <div className="mt-16 rounded-2xl bg-slate-50 border border-slate-200/80 p-6 sm:p-8 text-center max-w-4xl mx-auto">
+                    <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm font-bold text-slate-800">
+                        <span className="flex items-center gap-2">
+                            <span className="grid size-6 place-items-center rounded-full bg-teal-100 text-teal-800 text-xs">🔒</span>
+                            256-bit Encrypted Payment
                         </span>
-                        <span className="inline-flex items-center gap-2">
-                            <span className="grid size-7 place-items-center rounded-full bg-[#087f86] text-white">✓</span>
-                            Technical Support
+                        <span className="flex items-center gap-2">
+                            <span className="grid size-6 place-items-center rounded-full bg-teal-100 text-teal-800 text-xs">⚡</span>
+                            Guaranteed On-Time Call
                         </span>
-                        <span className="inline-flex items-center gap-2">
-                            <span className="grid size-7 place-items-center rounded-full bg-[#087f86] text-white">✓</span>
-                            Payment
+                        <span className="flex items-center gap-2">
+                            <span className="grid size-6 place-items-center rounded-full bg-teal-100 text-teal-800 text-xs">🤝</span>
+                            100% Verified Advisors
                         </span>
                     </div>
-                    <p className="mt-6 text-sm text-slate-500">
-                        Payments are handled securely through the most popular payment methods.
-                    </p>
-                    <div className="mt-6 flex flex-wrap justify-center gap-4 text-xl font-black text-slate-300">
-                        <span>VISA</span>
-                        <span>Mastercard</span>
-                        <span>PayPal</span>
-                        <span>Amex</span>
-                        <span>G Pay</span>
+
+                    <div className="mt-6 border-t border-slate-200/60 pt-5">
+                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Accepted Payment Modes
+                        </p>
+                        <PaymentMethodsRow />
                     </div>
                 </div>
             </div>

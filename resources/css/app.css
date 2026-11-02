@@ -7,21 +7,287 @@
 @source '../**/*.jsx';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
 }
 
+/* Base smoothing */
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Modern Gradient Text */
+.gradient-text-teal {
+    background: linear-gradient(135deg, #0d9488 0%, #0284c7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-brand {
+    background: linear-gradient(135deg, #0f766e 0%, #065f46 50%, #0284c7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.07);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(13, 148, 136, 0.3);
+    box-shadow: 0 20px 40px -12px rgba(13, 148, 136, 0.15);
+}
+
+/* Subtle Floating Animations */
+@keyframes float-gentle {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes float-reverse {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+@keyframes pulse-soft {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.85;
+        transform: scale(1.04);
+    }
+}
+
+@keyframes glow-shift {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(13, 148, 136, 0.25));
+    }
+    50% {
+        filter: drop-shadow(0 0 35px rgba(2, 132, 199, 0.35));
+    }
+}
+
+.animate-float-gentle {
+    animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+    animation: float-reverse 4.5s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.glow-effect {
+    animation: glow-shift 6s ease-in-out infinite;
+}
+
+/* Interactive Buttons */
 .motion-button {
-    transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .motion-button:hover {
-    box-shadow: 0 16px 30px rgb(6 43 51 / 16%);
     transform: translateY(-2px);
+    box-shadow: 0 12px 25px -5px rgba(13, 148, 136, 0.35);
+}
+
+.motion-button:active {
+    transform: translateY(0px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .motion-button:hover {
-        transform: none;
+    .motion-button:hover,
+    .glass-card:hover,
+    .animate-float-gentle,
+    .animate-float-reverse,
+    .animate-pulse-soft,
+    .glow-effect {
+        transform: none !important;
+        animation: none !important;
     }
 }
+
+/* Jon Kantner "Lines and Dots" Preloader */
+.lines-and-dots {
+    --anim-dur: 2s;
+    --dot-size: 0.4em;
+    --line-length: 3em;
+    --line-width: 0.1em;
+    position: relative;
+    width: 12em;
+    height: 12em;
+}
+
+.lines-and-dots__sector {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.lines-and-dots__dot,
+.lines-and-dots__dot:before,
+.lines-and-dots__line {
+    position: absolute;
+    animation-duration: var(--anim-dur);
+    animation-delay: inherit;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+.lines-and-dots__dot:before,
+.lines-and-dots__line {
+    background-color: currentColor;
+}
+
+.lines-and-dots__dot {
+    animation-name: dot-move-in-out;
+    top: calc(var(--line-length) / -2 + var(--dot-size) / -2);
+    left: calc(var(--dot-size) / -2);
+    width: var(--dot-size);
+    height: var(--dot-size);
+    z-index: 1;
+}
+
+.lines-and-dots__dot:before {
+    animation-name: dot-scale-in-out;
+    animation-timing-function: linear;
+    border-radius: 50%;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.lines-and-dots__dot + .lines-and-dots__dot {
+    animation-name: dot-move-out-in;
+    top: calc(var(--line-length) / 2 + var(--dot-size) / -2);
+}
+
+.lines-and-dots__dot + .lines-and-dots__dot:before {
+    animation-name: dot-scale-out-in;
+}
+
+.lines-and-dots__line {
+    animation-name: line-shade, line-spin;
+    opacity: 0.5;
+    top: calc(var(--line-length) / -2);
+    left: calc(var(--line-width) / -2);
+    width: var(--line-width);
+    height: var(--line-length);
+}
+
+@keyframes dot-move-in-out {
+    from {
+        animation-timing-function: ease-in;
+        transform: translateY(0);
+    }
+    50% {
+        animation-timing-function: ease-out;
+        transform: translateY(1.5em);
+    }
+    to {
+        transform: translateY(3em);
+    }
+}
+
+@keyframes dot-move-out-in {
+    from {
+        animation-timing-function: ease-in;
+        transform: translateY(0);
+    }
+    50% {
+        animation-timing-function: ease-out;
+        transform: translateY(-1.5em);
+    }
+    to {
+        transform: translateY(-3em);
+    }
+}
+
+@keyframes dot-scale-in-out {
+    from, to {
+        transform: scale(0.67);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+
+@keyframes dot-scale-out-in {
+    from, to {
+        transform: scale(0.67);
+    }
+    50% {
+        transform: scale(0.33);
+    }
+}
+
+@keyframes line-shade {
+    from, to {
+        animation-timing-function: ease-in;
+        transform: scaleY(1);
+    }
+    50% {
+        animation-timing-function: ease-out;
+        transform: scaleY(0);
+    }
+}
+
+@keyframes line-spin {
+    from, to {
+        animation-timing-function: ease-in;
+        opacity: 0.5;
+    }
+    50% {
+        animation-timing-function: step-start;
+        opacity: 0;
+    }
+}
+

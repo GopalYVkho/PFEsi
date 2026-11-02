@@ -48,7 +48,7 @@ export default function AdminLogin() {
                             type="email"
                             value={form.email}
                             onChange={(event) => setForm({ ...form, email: event.target.value })}
-                            className="h-11 w-full rounded-lg border border-slate-300 px-3 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                            className="h-11 w-full rounded-lg border border-slate-300 px-3 text-sm outline-none focus:border-[#0fd3c8] focus:ring-2 focus:ring-cyan-100"
                             required
                         />
                     </div>
@@ -58,7 +58,7 @@ export default function AdminLogin() {
                             type="password"
                             value={form.password}
                             onChange={(event) => setForm({ ...form, password: event.target.value })}
-                            className="h-11 w-full rounded-lg border border-slate-300 px-3 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                            className="h-11 w-full rounded-lg border border-slate-300 px-3 text-sm outline-none focus:border-[#0fd3c8] focus:ring-2 focus:ring-cyan-100"
                             required
                         />
                     </div>
@@ -66,7 +66,7 @@ export default function AdminLogin() {
 
                 {error && <p className="mt-4 text-sm font-bold text-red-600">{error}</p>}
 
-                <button className="mt-7 h-11 w-full rounded-lg bg-blue-600 text-sm font-black text-white hover:bg-blue-700">
+                <button className="mt-7 h-11 w-full rounded-lg bg-[#062b33] text-sm font-black text-white hover:bg-[#0b3c46]">
                     Login
                 </button>
             </form>
